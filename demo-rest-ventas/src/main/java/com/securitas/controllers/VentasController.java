@@ -19,7 +19,7 @@ import com.securitas.services.VentasRepositoryImpl;
 @RequestMapping ("/Ventas")
 public class VentasController {
     VentasRepository repositorio;
-    public VentasController(VentasRepository repositorio) {
+    public VentasController() {
         this.repositorio = new VentasRepositoryImpl();
     }
 
@@ -32,22 +32,23 @@ public class VentasController {
         } else {
             return ResponseEntity.ok(elemento);
         }
+        
     }
     @GetMapping()
-    public List<Order> getAll()
+    public ResponseEntity<List<Order>> getAll()
     {
-        return repositorio.getAll();
+        return ResponseEntity.ok(repositorio.getAll());
     }
 
-    @DeleteMapping("/{Id}")
-    public ResponseEntity<String> deleteVentas(@PathVariable int Id)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteVentas(@PathVariable int id)
     {
-        if (repositorio.delete(Id)) {
+        if (Boolean.TRUE.equals(repositorio.delete(id))) {
             return ResponseEntity.ok().body("Venta borrada satisfactoriamente");
         }
         else
         {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Venta no existe con ese Id" + Id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Venta no existe con ese Id" + id);
         }
     }
     @PatchMapping("")
