@@ -1,10 +1,17 @@
 package com.securitas.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.securitas.model.Order;
 
 public class ServicesRepository implements IBusquedaRepository{
-    private final CustomerServicdImpl servicioClientes =new CustomerServicdImpl();
-    private final ProductServiceImpl servicioProductos = new ProductServiceImpl();
-    private final VentasServiceImpl servicioVentas = new VentasServiceImpl();
+    
+
+    @Autowired
+    private ICustomerService servicioClientes;
+    private IProductService servicioProductos;
+    private IVentasService servicioVentas; 
+
 
     public String muestra(int id)
     {
