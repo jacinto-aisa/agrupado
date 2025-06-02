@@ -20,7 +20,7 @@ public class ServicesRepository implements IBusquedaRepository{
         {
             concatena.append("Pedido Nº: ").append(pedido.getId()).append(",de fecha: ").append(pedido.getOrderDate()).append("\n");
             concatena.append("Con un coste total de: ").append(pedido.getTotal()).append(", compuesto por:\n");
-            for (var linea : pedido.items)
+            for (var linea : Order.items)
             {
                 var productoBuscado = servicioProductos.get(linea.getProductId());
                 concatena.append("producto: ").append(productoBuscado.getName()).append(" Cantidad: ").append(linea.getQuantity());
