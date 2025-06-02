@@ -6,12 +6,12 @@ public class ServicesRepository implements IBusquedaRepository{
     private final ProductServiceImpl servicioProductos = new ProductServiceImpl();
     private final VentasServiceImpl servicioVentas = new VentasServiceImpl();
 
-    public String Muestra(int Id)
+    public String muestra(int id)
     {
 
-        var miCliente = servicioClientes.get(Id);
-        var listaPedidosCliente = servicioVentas.Get(Id);
-        StringBuilder concatena = new StringBuilder("Resumen para el cliente de código "+Id+"\n");
+        var miCliente = servicioClientes.get(id);
+        var listaPedidosCliente = servicioVentas.get(id);
+        StringBuilder concatena = new StringBuilder("Resumen para el cliente de código "+id+"\n");
         concatena.append("Nombre: ").append(miCliente.getName()).append(" de: ").append(miCliente.getCity()).append("\n");
         concatena.append("""
                          Ha Realizado los siguientes pedidos:
@@ -20,11 +20,11 @@ public class ServicesRepository implements IBusquedaRepository{
         {
             concatena.append("Pedido Nº: ").append(pedido.getId()).append(",de fecha: ").append(pedido.getOrderDate()).append("\n");
             concatena.append("Con un coste total de: ").append(pedido.getTotal()).append(", compuesto por:\n");
-            for (var linea : pedido.Items)
+            for (var linea : pedido.items)
             {
-                var ProductoBuscado = servicioProductos.Get(linea.getProductId());
-                concatena.append("producto: ").append(ProductoBuscado.getName()).append(" Cantidad: ").append(linea.getQuantity());
-                concatena.append("precio: ").append(ProductoBuscado.getPrice()).append("\n");
+                var productoBuscado = servicioProductos.get(linea.getProductId());
+                concatena.append("producto: ").append(productoBuscado.getName()).append(" Cantidad: ").append(linea.getQuantity());
+                concatena.append("precio: ").append(productoBuscado.getPrice()).append("\n");
             }
 
         }
@@ -32,7 +32,7 @@ public class ServicesRepository implements IBusquedaRepository{
     }
 
     @Override
-    public Order Get(int Id) {
+    public Order get(int Id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

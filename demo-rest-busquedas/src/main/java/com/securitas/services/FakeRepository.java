@@ -25,22 +25,22 @@ public class FakeRepository implements IBusquedaRepository{
             listaProductos.add(new Producto(i,"Producto "+i,i * 3.14));
         }
 
-        var Order01 = new Order(
+        var ordenUno = new Order(
                 1,
                 new Date(),
                 1,
                 100);
-        Order01.Add(new OrderItem(1, 1, 23, 2, 50));
-        Order01.Add(new OrderItem(1, 2, 4, 1, 50));
-        listaPedidos.add(Order01);
+        ordenUno.add(new OrderItem(1, 1, 23, 2, 50));
+        ordenUno.add(new OrderItem(1, 2, 4, 1, 50));
+        listaPedidos.add(ordenUno);
 
         var Order02 = new Order(
                 2,
                 new Date(),
                 2,
                 100);
-        Order02.Add(new OrderItem(2, 1, 23, 2, 50));
-        Order02.Add(new OrderItem(2, 2, 4, 1, 50));
+        Order02.add(new OrderItem(2, 1, 23, 2, 50));
+        Order02.add(new OrderItem(2, 2, 4, 1, 50));
         listaPedidos.add(Order02);
 
         var Order03 = new Order(
@@ -48,8 +48,8 @@ public class FakeRepository implements IBusquedaRepository{
                 new Date(),
                 2,
                 100);
-        Order03.Add(new OrderItem(3, 1, 23, 2, 50));
-        Order03.Add(new OrderItem(3, 2, 4, 1, 50));
+        Order03.add(new OrderItem(3, 1, 23, 2, 50));
+        Order03.add(new OrderItem(3, 2, 4, 1, 50));
         listaPedidos.add(Order03);
 
         var Order04 = new Order(
@@ -57,25 +57,25 @@ public class FakeRepository implements IBusquedaRepository{
                 new Date(),
                 3,
                 50);
-        Order04.Add(new OrderItem(4, 1, 5, 1, 50));
+        Order04.add(new OrderItem(4, 1, 5, 1, 50));
         listaPedidos.add(Order04);
     }
 
 
     @Override
-    public Order Get(int Id) {
+    public Order get(int id) {
         return null;
     }
 
-    public String Muestra(int Id)
+    public String muestra(int id)
     {
         var miCliente = listaCustomers.stream().
-                filter(x -> x.getId()==Id).
+                filter(x -> x.getId()==id).
                 findFirst().
                 orElse(null);
 
-        var listaPedidosCliente = listaPedidos.stream().filter(x->x.getCustomerId()==Id);
-        StringBuilder concatena = new StringBuilder("Resumen para el cliente de código "+Id+"\n");
+        var listaPedidosCliente = listaPedidos.stream().filter(x->x.getCustomerId()==id);
+        StringBuilder concatena = new StringBuilder("Resumen para el cliente de código "+id+"\n");
         concatena.append("Nombre: ").append(miCliente.getName()).append(" de: ").append(miCliente.getCity()).append("\n");
         concatena.append("""
                          Ha Realizado los siguientes pedidos:
@@ -84,12 +84,12 @@ public class FakeRepository implements IBusquedaRepository{
         {
             concatena.append("Pedido Nº: ").append(pedido.getId()).append(",de fecha: ").append(pedido.getOrderDate()).append("\n");
             concatena.append("Con un coste total de: ").append(pedido.getTotal()).append(", compuesto por:\n");
-            for (var linea : pedido.Items)
+            for (var linea : pedido.items)
             {
-                var ProductoBuscado = listaProductos.stream().filter(x->x.getId()==linea.getProductId())
+                var productoBuscado = listaProductos.stream().filter(x->x.getId()==linea.getProductId())
                         .findFirst().orElse(null);
-                concatena.append("producto: ").append(ProductoBuscado.getName()).append(" Cantidad: ").append(linea.getQuantity());
-                concatena.append("precio: ").append(ProductoBuscado.getPrice()).append("\n");
+                concatena.append("producto: ").append(productoBuscado.getName()).append(" Cantidad: ").append(linea.getQuantity());
+                concatena.append("precio: ").append(productoBuscado.getPrice()).append("\n");
             }
 
         }

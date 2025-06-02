@@ -9,7 +9,7 @@ import com.securitas.model.Producto;
 @Service
 public class ProductServiceImpl implements IProductService{
     @Override
-    public Producto Get(int id) {
+    public Producto get(int id) {
         RestClient restClient = RestClient.builder()
         .build();
         return restClient.get()

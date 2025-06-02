@@ -2,66 +2,33 @@ package com.securitas.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Data
+@AllArgsConstructor
+@Getter
+@Setter
 public class Order {
 
-        private int Id;
-        private Date OrderDate;
-        private int CustomerId;
-        private double Total;
+        private int id;
+        private Date orderDate;
+        private int customerId;
+        private double total;
 
-        public ArrayList<OrderItem> Items = new ArrayList<>();
+        public static final List<OrderItem> items = new ArrayList<>();
 
-    public Order(int id, Date orderDate, int customerId, double total) {
-        Id = id;
-        OrderDate = orderDate;
-        CustomerId = customerId;
-        Total = total;
-    }
+        public static List<OrderItem> getItems() {
+            return items;
+        }
 
-    public void Add(OrderItem item)
-    {
-        Items.add(item);
-    }
-
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
-    }
-
-    public Date getOrderDate() {
-        return OrderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        OrderDate = orderDate;
-    }
-
-    public int getCustomerId() {
-        return CustomerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        CustomerId = customerId;
-    }
-
-    public double getTotal() {
-        return Total;
-    }
-
-    public void setTotal(double total) {
-        Total = total;
-    }
-
-    public ArrayList<OrderItem> getItems() {
-        return Items;
-    }
-
-    public void setItems(ArrayList<OrderItem> items) {
-        Items = items;
-    }
+        public void add(OrderItem item)
+        {   
+            items.add(item);
+        }
 }
 

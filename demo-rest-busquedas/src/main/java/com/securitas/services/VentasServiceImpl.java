@@ -15,7 +15,7 @@ import com.securitas.model.Order;
 @RequiredArgsConstructor
 public class VentasServiceImpl implements IVentasService{
     @Override
-    public List<Order> Get(int id) {
+    public List<Order> get(int id) {
     RestClient restClient = RestClient.builder()
         .build();
         var result = restClient.get()

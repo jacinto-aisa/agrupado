@@ -4,7 +4,7 @@ import com.securitas.model.Order;
 
 public class BusquedaRepository implements IBusquedaRepository{
     @Override
-    public Order Get(int Id) {
+    public Order get(int id) {
         return null;
     }
 }

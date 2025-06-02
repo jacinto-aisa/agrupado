@@ -15,7 +15,7 @@ public class BusquedasController {
     public String get(@PathVariable int id)
     {
         var repositorio = new ServicesRepository();
-        return repositorio.Muestra(id);
+        return repositorio.muestra(id);
     }
 
 
