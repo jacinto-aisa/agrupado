@@ -75,8 +75,6 @@ public class CustomerRepositoryImpl implements CustomerRepository {
                 .filter(filtro)
                 .forEach(consumidor);
     }
-
-
 }
 
 

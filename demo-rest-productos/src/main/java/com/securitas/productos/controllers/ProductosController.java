@@ -2,6 +2,8 @@ package com.securitas.productos.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,38 +27,60 @@ public class ProductosController {
     }
 
     @GetMapping("/Get/{id}")
-    public Producto get(@PathVariable int id)
+    public ResponseEntity<?> get(@PathVariable int id)
     {
-        return repositorio.get(id);
+        var elemento = repositorio.get(id);
+        if (elemento == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Producto().toString() + id);
+        } else {
+            return ResponseEntity.ok(elemento);
+        }
     }
     @GetMapping("/GetAll")
-    public List<Producto> getAll()
+    public ResponseEntity<List<Producto>> getAll()
     {
-        return repositorio.getAll();
+        var resultado = repositorio.getAll();
+        return ResponseEntity.ok(resultado);
     }
     @PostMapping("/PostProducto")
-    public Producto postProducto(@RequestBody Producto product)
+    public ResponseEntity<String> postProducto(@RequestBody Producto product)
     {
-        return repositorio.postProducto(product);
+        if (exist(product.getId()))
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto ya existe con ese Id" + product.getId());
+        }
+        else {
+            repositorio.postProducto(product);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Producto creado");
+        }
     }
 
     @DeleteMapping("/Delete/{id}")
-    public Boolean deleteProducto(@PathVariable int id)
+    public ResponseEntity<String> deleteProducto(@PathVariable int id)
     {
-        return repositorio.delete(id);
+        if (Boolean.FALSE.equals(repositorio.delete(id))){
+            return ResponseEntity.ok().body("Cliente eliminado con exito");
+        }
+        else
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no existe con ese Id" + id);
+        }
     }
 
-    @PutMapping("/Put/{Product}/{id}")
+    @PutMapping("/Put/{product}/{id}")
     public Producto putProducto(@RequestBody Producto product,
                                 @PathVariable int id)
     {
         return repositorio.putProducto(product,id);
     }
 
-    @PatchMapping("/Patch/{Product}")
+    @PatchMapping("/Patch/{product}")
     public Producto patchProducto(@RequestBody Producto product)
     {
         return putProducto(product,product.getId());
     }
-
+    private boolean exist(int id)
+    {
+        return repositorio.get(id) != null;
+    }
 }

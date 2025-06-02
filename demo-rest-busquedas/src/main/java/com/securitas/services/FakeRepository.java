@@ -1,5 +1,7 @@
 package com.securitas.services;
 
+import static com.securitas.model.Order.items;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -25,14 +27,14 @@ public class FakeRepository implements IBusquedaRepository{
             listaProductos.add(new Producto(i,"Producto "+i,i * 3.14));
         }
 
-        var ordenUno = new Order(
+        Order Orden1 = new Order(
                 1,
                 new Date(),
                 1,
                 100);
-        ordenUno.add(new OrderItem(1, 1, 23, 2, 50));
-        ordenUno.add(new OrderItem(1, 2, 4, 1, 50));
-        listaPedidos.add(ordenUno);
+        Orden1.add(new OrderItem(1, 1, 23, 2, 50));
+        Orden1.add(new OrderItem(1, 2, 4, 1, 50));
+        listaPedidos.add(Orden1);
 
         var Order02 = new Order(
                 2,
@@ -84,12 +86,12 @@ public class FakeRepository implements IBusquedaRepository{
         {
             concatena.append("Pedido Nº: ").append(pedido.getId()).append(",de fecha: ").append(pedido.getOrderDate()).append("\n");
             concatena.append("Con un coste total de: ").append(pedido.getTotal()).append(", compuesto por:\n");
-            for (var linea : pedido.items)
+            for (var linea : items)
             {
-                var productoBuscado = listaProductos.stream().filter(x->x.getId()==linea.getProductId())
+                var ProductoBuscado = listaProductos.stream().filter(x->x.getId()==linea.getProductId())
                         .findFirst().orElse(null);
-                concatena.append("producto: ").append(productoBuscado.getName()).append(" Cantidad: ").append(linea.getQuantity());
-                concatena.append("precio: ").append(productoBuscado.getPrice()).append("\n");
+                concatena.append("producto: ").append(ProductoBuscado.getName()).append(" Cantidad: ").append(linea.getQuantity());
+                concatena.append("precio: ").append(ProductoBuscado.getPrice()).append("\n");
             }
 
         }
