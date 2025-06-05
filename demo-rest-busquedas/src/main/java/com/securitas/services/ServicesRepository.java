@@ -1,21 +1,17 @@
 package com.securitas.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.securitas.model.Order;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class ServicesRepository implements IBusquedaRepository{
-    
-
-    @Autowired
-    private ICustomerService servicioClientes;
-    private IProductService servicioProductos;
-    private IVentasService servicioVentas; 
-
+    private final ICustomerService servicioClientes;
+    private final IProductService servicioProductos;
+    private final IVentasService servicioVentas; 
 
     public String muestra(int id)
     {
-
         var miCliente = servicioClientes.get(id);
         var listaPedidosCliente = servicioVentas.get(id);
         StringBuilder concatena = new StringBuilder("Resumen para el cliente de código "+id+"\n");

@@ -57,24 +57,11 @@
     		<groupId>org.springframework.cloud</groupId>
     		<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
+
 		<dependency>
-            <groupId>com.maciejwalkowiak.spring</groupId>
-            <artifactId>wiremock-spring-boot</artifactId>
-            <version>1.0.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.github.tomakehurst</groupId>
-                    <artifactId>wiremock-jre8-standalone</artifactId>
-                </exclusion>
-            </exclusions>
-            <scope>test</scope>
-        </dependency>
-		<dependency>
-            <groupId>com.github.tomakehurst</groupId>
-            <artifactId>wiremock-standalone</artifactId>
-            <version>3.0.1</version>
-            <scope>test</scope>
-        </dependency>
+        	<groupId>com.netflix.eureka</groupId>
+        	<artifactId>eureka-core</artifactId>
+    	</dependency>
 	</dependencies>
 	<dependencyManagement>
     <dependencies>
