@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": ".devcontainer"
+		},
+		{
+			"path": "api-gateway"
+		},
+		{
+			"path": "demo-rest-busquedas"
+		},
+		{
+			"path": "demo-rest-clientes"
+		},
+		{
+			"path": "demo-rest-productos"
+		},
+		{
+			"path": "demo-rest-ventas"
+		},
+		{
+			"path": "discover"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive",
+		"files.autoSave": "afterDelay",
+		"editor.mouseWheelZoom": true,
+		"java.compile.nullAnalysis.mode": "disabled"
+	}
+}

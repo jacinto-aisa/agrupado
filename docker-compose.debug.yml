@@ -1,0 +1,66 @@
+services:
+
+  discover:
+    image: discover
+    build:
+      context: discover
+      dockerfile: ./Dockerfile  
+    environment:
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005,quiet=y
+    ports:
+      - 8099:8099
+      - 5005:5005
+  api-gateway:
+    image: api-gateway
+    build:
+      context: api-gateway
+      dockerfile: ./Dockerfile
+    environment:
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005,quiet=y
+    ports:
+      - 50004:50004
+      - 5005:5005 
+
+  demo-rest-clientes:
+    image: demo-rest-clientes
+    build:
+      context: demo-rest-clientes
+      dockerfile: ./Dockerfile
+    environment:
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005,quiet=y
+    ports:
+      - 50001:50001
+      - 5005:5005
+
+  demo-rest-productos:
+    image: demo-rest-productos
+    build:
+      context: demo-rest-productos
+      dockerfile: ./Dockerfile
+    environment:
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005,quiet=y
+    ports:
+      - 50002:50002
+      - 5005:5005
+  demo-rest-ventas:  
+    image: demo-rest-ventas
+    build:
+      context: demo-rest-ventas
+      dockerfile: ./Dockerfile
+    environment:
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005,quiet=y
+    ports:
+      - 50003:50003
+      - 5005:5005     
+
+  demo-rest-busquedas:
+    image: demo-rest-busquedas
+    build:
+      context: demo-rest-busquedas
+      dockerfile: ./Dockerfile  
+    environment:
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005,quiet=y
+    ports:
+      - 50004:50004
+      - 5005:5005
+    

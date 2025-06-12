@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import com.securitas.productos.model.Producto;
+import com.securitas.controllers.ProductosController;
+import com.securitas.model.Producto;
 
 public class ProductosControllerTest {
     ProductosController controlador = new ProductosController();

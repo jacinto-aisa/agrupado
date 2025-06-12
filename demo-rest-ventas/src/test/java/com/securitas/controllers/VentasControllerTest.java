@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.securitas.model.Order;
 
-public class VentasControllerTest {
+class VentasControllerTest {
     VentasController controlador = new VentasController();
     @Test
     void testPatch() {

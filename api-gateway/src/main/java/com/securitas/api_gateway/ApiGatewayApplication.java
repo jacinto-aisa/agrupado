@@ -1,3 +1,13 @@
+/**
+ * Main application class for the API Gateway service.
+ * <p>
+ * This class serves as the entry point for the Spring Boot application,
+ * responsible for bootstrapping and launching the API Gateway.
+ * </p>
+ * 
+ * @author Securitas
+ * @since 2025
+ */
 package com.securitas.api_gateway;
 
 import org.springframework.boot.SpringApplication;
